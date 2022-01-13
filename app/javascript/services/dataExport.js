@@ -120,7 +120,8 @@ wpd.dataExport = (function() {
         }
 
         // download
-        wpd.download.csv(csvText, "wpd_datasets.csv");
+        let filename = document.getElementById('export-all-data-filename').value;
+        wpd.download.csv(csvText, filename != "" ? filename : "wpd_datasets.csv");
     }
 
     function exportToPlotly() {
