@@ -218,6 +218,39 @@ wpd.tree = (function() {
         }
         treeData.push(datasetsFolder);
 
+        //the datepicker initialization
+        let datepickerContainer = document.getElementsByClassName('the-datepicker__main');
+        if (datepickerContainer.length == 0) { 
+            console.log('no datepicker');
+            const datepickerDiv = document.getElementById('date-picker');
+            const datepicker = new TheDatepicker.Datepicker(null, datepickerDiv);
+            datepicker.options.onSelect(function (event, day, previousDay) {
+            console.log('Dan ' + day.dayNumber +'-'+day.month+'-'+day.year);
+            document.getElementById('add-single-dataset-name-input').value = day.dayNumber +'-'+day.month+'-'+day.year;
+            wpd.dataSeriesManagement.addSingleDataset();
+            // perform a click on newly created dataset item to select it
+            Array.from(document.getElementsByClassName('tree-item')).filter(function (currentElement) {
+                return currentElement.innerText == day.dayNumber +'-'+day.month+'-'+day.year;
+              })[0].click();
+            wpd.colorPicker.startPicker();
+            document.getElementById('color-distance-value').value = 40;
+            wpd.colorPicker.changeColorDistance();
+           // wpd.popup.show('color-selection-widget');
+           // wpd.popup.close('color-selection-widget');
+            let rgb = document.getElementById('defalt-FG-color').style.getPropertyValue("background-color").match(/\d+/g)
+            document.getElementById('color-selection-red').value = +rgb[0];
+            document.getElementById('color-selection-green').value = +rgb[1]; 
+            document.getElementById('color-selection-blue').value = +rgb[2];
+            wpd.colorSelectionWidget.setColor();
+            document.getElementById('algo-param-xStep').value = 20;
+            document.getElementById('algo-param-yStep').value = 20;
+
+            console.dir(day);
+            });
+            datepicker.render();
+        }
+        
+
         // Dataset colors
         for (let ds of plotData.getDatasets()) {
             if (ds.colorRGB != null) {

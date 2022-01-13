@@ -57,3 +57,17 @@ wpd.ColorFilterRepainter = (function() {
     };
     return Painter;
 })();
+
+wpd.ColorPickerColor = (function() {
+    
+    function setDefaul() {
+     
+       let R = document.getElementById('color-selection-red').value;
+       let G = document.getElementById('color-selection-green').value;
+       let B = document.getElementById('color-selection-blue').value;     
+       document.getElementById('defalt-FG-color').style.backgroundColor = 'rgb('+ R + ','+ G + ',' + B + ')';
+        
+
+    };
+    return {setDefault:setDefaul}
+})();
