@@ -7,6 +7,7 @@
     "scripts": {
         "prebuild": "./build.sh",
         "build": "uglifyjs combined.js -cm -o wpd.min.js",
+        "build-dev": "uglifyjs combined.js -b -o wpd.min.js",
         "format": "./format.sh"
     },
     "devDependencies": {
