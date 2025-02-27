@@ -59,6 +59,12 @@ wpd.acquireData = (function() {
         wpd.graphicsWidget.setTool(tool);
     }
 
+    function manualProgresiveSelection() {
+        // manual selection where Point.x needs to increase with every succesive selected point
+        var tool = new wpd.ManualProgresiveSelectionTool(axes, dataset);
+        wpd.graphicsWidget.setTool(tool);
+    }
+
     function deletePoint() {
         var tool = new wpd.DeleteDataPointTool(axes, dataset);
         wpd.graphicsWidget.setTool(tool);
@@ -123,6 +129,9 @@ wpd.acquireData = (function() {
             case 'a':
                 manualSelection();
                 break;
+            case 'f':
+                manualProgresiveSelection();
+                break;    
             case 's':
                 adjustPoints();
                 break;
@@ -145,6 +154,7 @@ wpd.acquireData = (function() {
     return {
         load: load,
         manualSelection: manualSelection,
+        manualProgresiveSelection: manualProgresiveSelection,
         adjustPoints: adjustPoints,
         deletePoint: deletePoint,
         clearAll: clearAll,
