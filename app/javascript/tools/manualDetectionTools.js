@@ -191,13 +191,18 @@ wpd.ManualProgresiveSelectionTool = (function() {
         this.onMouseClick = function(ev, pos, imagePos) {
             if (!firstClick) {
                 var lastPtIndex = dataset.getCount() - 1;
-                var DataShift = wpd.XYAxes.pixelToData(2, 0);
+                //NOTE:  I don't know if wpd.XYAxes object is  properly instantaed here and comented code worked in the past, but now 
+                // it is not working. Also druing the build process uglify wigh compress option is not able to minify the code by removing 
+                // console.log statements. So I have to comment the code to make it work.
+                // var DataShift = wpd.XYAxes.pixelToData(2, 0);
+
+                //var DataShift = wpd.XYAxes.pixelToData(2, 0);
                 lastPt = dataset.getPixel(lastPtIndex);
-                lastData = wpd.XYAxes.pixelToData(lastPt.x, lastPt.y);
-                imagePosData = wpd.XYAxes.pixelToData(imagePos.x, imagePos.y);
-                console.log("lastPt.x: " + lastPt.x+" lastData.x: "+lastData.x);
-                console.log("imagePos.x: " + imagePos.x +" imagePosData.x: "+imagePosData.x);
-                console.log("DataShift: "+ DataShift.x);
+                //lastData = wpd.XYAxes.pixelToData(lastPt.x, lastPt.y);
+                //imagePosData = wpd.XYAxes.pixelToData(imagePos.x, imagePos.y);
+                //console.log("lastPt.x: " + lastPt.x+" lastData.x: "+lastData.x);
+                //console.log("imagePos.x: " + imagePos.x +" imagePosData.x: "+imagePosData.x);
+                //console.log("DataShift: "+ DataShift.x);
                 if (imagePos.x <= lastPt.x) {
                     imagePos.x =  lastPt.x + 2; 
                    console.log("New imagePos.x:  " + imagePos.x);
